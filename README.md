@@ -1,2 +1,2 @@
 # boyuEducation
-some tool and modules
+Demo code and useful modules during class
