@@ -64,11 +64,15 @@ def insert ( key ):
 			break;
 
 
-def find_min ():
-	return Heap[1]
+# def find_min ():
+# 	return Heap[1]
 
-def extract_min():
-	result = Heap[1]
+# def extract_min():
+# 	result = Heap[1]
 
-	#delete root 
-	#repair
+# 	#delete root 
+# 	#repair
+
+
+
+
