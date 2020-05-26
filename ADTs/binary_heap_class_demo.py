@@ -31,3 +31,44 @@ ls.append (10)
 # e.g node (index = 0) 
 #   parent of node = floor( 0/2 ) = 0 
 #  indicates parent of the node is itself, which indicates it is the root
+
+
+
+Heap = [];
+
+Heap.append(0);
+
+Heap.append(7);
+Heap.append(8);
+Heap.append(10);
+Heap.append(12);
+Heap.append(14);
+Heap.append(13);
+Heap.append(20);
+
+
+# insert 6
+Heap.append(6);
+
+import math
+
+
+def insert ( key ):
+	index = 8
+	for i in range ( log2(len(Heap)) ):
+		parent_index = math.floor (index/2);
+		if ( Heap[index] > Heap[parent_index]):
+			swap (Heap[index], Heap[parent_index]);
+			index = parent_index;
+		else:
+			break;
+
+
+def find_min ():
+	return Heap[1]
+
+def extract_min():
+	result = Heap[1]
+
+	#delete root 
+	#repair
