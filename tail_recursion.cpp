@@ -18,9 +18,9 @@ double fact1 ( double a, double n){
 	}
 }
 
-double N = 100000;
 
-int main (){
+int main (int arg, char **argv ){
+	double N = std::stoi(argv[1]);
 
 	
 	// std::cout << fact(N) << std::endl;
