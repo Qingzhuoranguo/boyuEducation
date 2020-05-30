@@ -24,8 +24,3 @@ for i in range(360*3):
 
 # 	alex.forward(250)
 # 	alex.left(90)
-
-
-turtle.done()
-
-hash function 
