@@ -2,7 +2,6 @@
 
 
 int main (){
-	char x = 65;
-	printf("%c, \n", x);
+	printf ("Hello World!\n");
 }
 
