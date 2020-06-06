@@ -28,7 +28,8 @@ int main (){
 	2. reference: x 
 	3. value: 3
 	*/
-	int* y = &x;
+
+	int* y = &x; // 0x111fff00
 	/*
 	"int* y"
 	variable with
@@ -43,3 +44,15 @@ int main (){
 
 	return 0;
 }
+
+
+/*
+
+%d decimal
+%p pointer/address  0xffffffff
+%c character
+%f float
+%s string
+%x hexadecimal
+
+*/
