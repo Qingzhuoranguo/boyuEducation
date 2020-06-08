@@ -27,4 +27,4 @@ int main (int arg, char **argv ){
 	std::cout << fact1(1,N) << std::endl;
 
 	return 0;
-}
+} 
