@@ -4,6 +4,12 @@
 int main () {
 	//Q1 declare an integer array with 10 elements
 	int arr [10];
+	/*
+	variable with
+	type: integer array
+	reference: arr
+	value: currently none but 10 slots
+	*/
 	
 	//Q2 write a for loop to put 10 numbers (1-10) into the array 
 	for (int i = 1; i < 11; i ++){
