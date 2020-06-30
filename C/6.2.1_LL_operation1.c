@@ -48,20 +48,20 @@ int LL_append( struct node_t **Head, struct node_t **Tail, int data ){
 }
 
 
-int main () {
+// int main () {
  
-	struct node_t *Head = NULL;
-	struct node_t *Tail = NULL;
+// 	struct node_t *Head = NULL;
+// 	struct node_t *Tail = NULL;
 
-	LL_append (&Head, &Tail, 1);
-	LL_append (&Head, &Tail, 2);
-	LL_append (&Head, &Tail, 3);
-	LL_append (&Head, &Tail, 4);
-	LL_append (&Head, &Tail, 5);
+// 	LL_append (&Head, &Tail, 1);
+// 	LL_append (&Head, &Tail, 2);
+// 	LL_append (&Head, &Tail, 3);
+// 	LL_append (&Head, &Tail, 4);
+// 	LL_append (&Head, &Tail, 5);
 
-	LL_print (Head);
+// 	LL_print (Head);
 
-	return 0;
-}
+// 	return 0;
+// }
 
 
