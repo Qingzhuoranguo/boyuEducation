@@ -1,0 +1,39 @@
+.c file 
+.i file
+.s file
+.o file
+.exe 
+
+
+e.g 
+
+test.c
+
+C code => .c file
+	pre-processor
+	gcc -E test.c > test.i
+
+pre-processed file => .i file
+	compiler
+	gcc -S -Og test.i => test.s
+
+assembly file => .s file
+	assembler 
+	gcc -c test.s => test.o
+
+object file => .o file
+	linker: link all .o files 
+	gcc -o test test.o => test.exe
+
+
+excutable file => .exe
+
+
+
+
+
+
+GCD.c => GCD.o
+test1.c => test1.o
+
+gcc -o test test1.o GCD.o 
