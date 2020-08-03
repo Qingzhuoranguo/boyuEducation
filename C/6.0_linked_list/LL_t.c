@@ -189,3 +189,68 @@ int LL_delete (struct node_t **Head, struct node_t **Tail, int target){
 	//not found;
 	return -2;
 }
+
+/*
+head -> null
+		tail
+
+head -> 2 -> 3 -> 4 -> 5 -> null
+					  tail
+
+head = newhead
+tail = newtail
+
+
+*/
+void LL_selection_sort(struct node_t **Head, struct node_t **Tail){
+	struct node_t *sortedHead = NULL;
+	struct node_t *sortedTail = NULL;
+
+
+	// while loop only does 2 things:
+	// 1. find the smallest
+	// 2. put it into the new sorted list.
+	while ( *Head != NULL ) {
+		// only one element
+		if ((*Head)->next == NULL ){
+			LL_append(&sortedHead, &sortedTail, (*Head)->data);
+			*Head = sortedHead;
+			*Tail = sortedTail;
+			return;
+		}
+
+		// actual results of tracing: minimum and minimum's previous node
+		struct node_t *cur_target = NULL;
+		struct node_t *tar_previous = NULL;
+
+		// assume the first element is the smallest
+		cur_target = *Head;
+		tar_previous = *Head;
+
+		// iteration
+		// always keep tracking previous in order to link the list after
+		struct node_t *previous = *Head;
+		struct node_t *current = (*Head)->next;
+		while ( current != NULL ){
+			if (current->data <= cur_target->data){
+				// record the minimum and its precious node
+				cur_target = current;
+				tar_previous = previous;
+			}
+			// otherwise: loop through
+			previous = current;
+			current = current->next;
+		}
+		// now we have the current min, and its previous node
+		// head -> .... -> tar_previous -> min -> node -> .....
+		// relink the list, push the min to the new sorted list 
+		tar_previous->next = cur_target->next;
+		// sortedHead -> .... -> min -> null
+		LL_append(&sortedHead, &sortedTail, cur_target->data );
+
+	}
+	// remap the list
+	*Head = sortedHead;
+	*Tail = sortedTail;
+	return;
+}
