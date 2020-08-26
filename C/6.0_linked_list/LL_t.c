@@ -254,3 +254,31 @@ void LL_selection_sort(struct node_t **Head, struct node_t **Tail){
 	*Tail = sortedTail;
 	return;
 }
+
+/*
+
+input:
+Head1 -> 3 -> 27 -> 38 -> 43
+						  tail
+Head2 -> 9 -> 10 -> 82 
+					tail
+
+output:
+Head -> 3 -> 9 -> 10 -> 27 -> 38 -> 43 -> 82
+										tail
+
+special case:
+Head1 -> 3
+Head2 -> 2
+return 
+Head -> 2 -> 3
+
+Head1 -> 
+Head2 -> 2
+return 
+Head -> 2
+
+*/
+void LL_Merge (struct node_t **Head1, struct node_t **Head2) {
+
+}
