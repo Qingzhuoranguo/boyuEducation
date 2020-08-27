@@ -213,26 +213,6 @@ struct node_t *LL_findMin(struct node_t *Head){
 	return min_pre_node;
 }
 
-	/*
-head -> null
-		tail
-
-head -> 2 -> 3 -> 4 -> 5 -> null
-					  tail
-
-head = newhead
-tail = newtail
-
-
-*/
-void LL_selection_sort(struct node_t **Head, struct node_t **Tail){
-	struct node_t *sortedHead = NULL;
-	struct node_t *sortedTail = NULL;
-
-	// struct node_t *
-
-}
-
 int LL_appendNode ( struct node_t **Head, struct node_t **Tail, struct node_t **node ){
 	if ((*node) == NULL)
 	{
@@ -256,30 +236,48 @@ int LL_appendNode ( struct node_t **Head, struct node_t **Tail, struct node_t **
 	*Tail = (*node);
 	return 0;
 }
-/*
 
-input:
-Head1 -> 3 -> 27 -> 38 -> 43
-						  tail
-Head2 -> 9 -> 10 -> 82 
-					tail
+struct node_t *LL_getTail(struct node_t *Head){
+	if ( Head == NULL){
+		return NULL;
+	}
+	if ( Head -> next == NULL ){
+		return Head;
+	}
+	struct node_t *current = Head;
+	while (current->next != NULL ){
+		current = current-> next;
+	}
+	return current;
+}
 
-output:
-Head -> 3 -> 9 -> 10 -> 27 -> 38 -> 43 -> 82
-										tail
+void LL_selection_sort(struct node_t **Head, struct node_t **Tail){
+	struct node_t *sortedHead = NULL;
+	struct node_t *sortedTail = NULL;
 
-special case:
-Head1 -> 3
-Head2 -> 2
-return 
-Head -> 2 -> 3
+	while ( *Head != NULL ){
+		struct node_t *minPreNode = LL_findMin (*Head);
+		struct node_t *minNode = NULL;
+		if (minPreNode -> next != NULL){
+			minNode = minPreNode->next;
+			if ( minNode->data > minPreNode ->data){
+				minNode = *Head;
+				*Head = (*Head)->next;
+			}else {
+				minPreNode->next = minNode -> next; 
+			}
+		}else {
+			minNode = *Head;
+			*Head = (*Head)->next;
+		}
+		// take the minNode append to the sorted list
+		LL_appendNode(&sortedHead, &sortedTail, &minNode);
+	}
+	*Head = sortedHead;
+	*Tail = LL_getTail(*Head);
+}
 
-Head1 -> 
-Head2 -> 2
-return 
-Head -> 2
 
-*/
 struct node_t *LL_Merge(struct node_t **Head1, struct node_t **Head2){
 	// if one of the lists is empty, return the other list
 	if ( *Head1 == NULL ) {
