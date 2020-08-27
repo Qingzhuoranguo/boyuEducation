@@ -190,7 +190,23 @@ int LL_delete (struct node_t **Head, struct node_t **Tail, int target){
 	return -2;
 }
 
-/*
+struct node_t *LL_findMin(struct node_t *Head){
+
+	struct node_t *current = Head;
+	struct node_t *min_node = Head;
+	int min = Head->data;
+
+	while ( current != NULL ){
+		if ( min > current->data ){
+			min = current->data;
+			min_node = current;
+		}
+		current = current->next;
+	}
+	return min_node;
+}
+
+	/*
 head -> null
 		tail
 
@@ -202,7 +218,8 @@ tail = newtail
 
 
 */
-void LL_selection_sort(struct node_t **Head, struct node_t **Tail){
+	void LL_selection_sort(struct node_t **Head, struct node_t **Tail)
+{
 	struct node_t *sortedHead = NULL;
 	struct node_t *sortedTail = NULL;
 
@@ -256,27 +273,26 @@ void LL_selection_sort(struct node_t **Head, struct node_t **Tail){
 }
 
 int LL_appendNode ( struct node_t **Head, struct node_t **Tail, struct node_t **node ){
-	if (*node == NULL)
+	if ((*node) == NULL)
 	{
 		return -1;
 	}
-	// if success
-	*node->data = data;
-	// because append to the Tail, this new node must be the last one, that is next = NULL
-	*node->next = NULL;
+
+	// break the original link 
+	(*node)->next = NULL;
 
 	// list is empty: Head = Tail = NULL
 	if (LL_is_Empty(*Head))
 	{
 		// head is the only node, and the tail is the only node too
-		*Head = node;
-		*Tail = node;
+		*Head = (*node);
+		*Tail = (*node);
 		return 0;
 	}
 
 	//list is not empty, head remains the same, but append to the tail
-	(*Tail)->next = node;
-	*Tail = node;
+	(*Tail)->next = (*node);
+	*Tail = (*node);
 	return 0;
 }
 /*
@@ -323,7 +339,7 @@ struct node_t *LL_Merge(struct node_t **Head1, struct node_t **Head2){
 	// loop unitl ONE of the lists is empty
 	while ( head1Current != NULL && head2Current != NULL ){
 		struct node_t *temp = NULL;
-		if ( (*head1Current)->data < (*head2Current) -> data ){
+		if ( head1Current->data < head2Current -> data ){
 			temp = head1Current;
 			head1Current = head1Current -> next;
 			LL_appendNode(&sortedHead, &sortedTail, &temp);
