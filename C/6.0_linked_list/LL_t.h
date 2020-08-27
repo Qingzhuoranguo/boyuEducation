@@ -32,9 +32,10 @@ each notes is not continuous in memory, so cannot do head + index
 always need to trace for index
 */
 
-	/*
+/*
 find the "smallest", put it at the head
 */
 void LL_selection_sort(struct node_t **Head, struct node_t **Tail);
 
+struct node_t *LL_Merge(struct node_t **Head1, struct node_t **Head2);
 void LL_merge_sort(struct node_t **Head, struct node_t **Tail);

@@ -322,3 +322,7 @@ struct node_t *LL_Merge(struct node_t **Head1, struct node_t **Head2){
 		return sortedHead;
 	}
 }
+
+void LL_merge_sort(struct node_t **Head, struct node_t **Tail){
+	
+}
