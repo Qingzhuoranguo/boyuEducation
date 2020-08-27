@@ -255,6 +255,30 @@ void LL_selection_sort(struct node_t **Head, struct node_t **Tail){
 	return;
 }
 
+int LL_appendNode ( struct node_t **Head, struct node_t **Tail, struct node_t **node ){
+	if (*node == NULL)
+	{
+		return -1;
+	}
+	// if success
+	*node->data = data;
+	// because append to the Tail, this new node must be the last one, that is next = NULL
+	*node->next = NULL;
+
+	// list is empty: Head = Tail = NULL
+	if (LL_is_Empty(*Head))
+	{
+		// head is the only node, and the tail is the only node too
+		*Head = node;
+		*Tail = node;
+		return 0;
+	}
+
+	//list is not empty, head remains the same, but append to the tail
+	(*Tail)->next = node;
+	*Tail = node;
+	return 0;
+}
 /*
 
 input:
@@ -279,6 +303,47 @@ return
 Head -> 2
 
 */
-void LL_Merge (struct node_t **Head1, struct node_t **Head2) {
+struct node_t *LL_Merge(struct node_t **Head1, struct node_t **Head2){
+	// if one of the lists is empty, return the other list
+	if ( *Head1 == NULL ) {
+		return *Head2;
+	}
+	if ( *Head2 == NULL ) {
+		return *Head1;
+	}
 
+	// current checking
+	struct node_t *head1Current = *Head1;
+	struct node_t *head2Current = *Head2;
+
+	// the output list
+	struct node_t *sortedHead = NULL;
+	struct node_t *sortedTail = NULL;
+	
+	// loop unitl ONE of the lists is empty
+	while ( head1Current != NULL && head2Current != NULL ){
+		struct node_t *temp = NULL;
+		if ( (*head1Current)->data < (*head2Current) -> data ){
+			temp = head1Current;
+			head1Current = head1Current -> next;
+			LL_appendNode(&sortedHead, &sortedTail, &temp);
+		}else {
+			temp = head2Current;
+			head2Current = head2Current -> next;
+			LL_appendNode(&sortedHead, &sortedTail, &temp);
+		}
+	}
+	// now one of the lists is empty, check which it is and if the other one still has nodes
+	if ( head1Current == NULL ){
+		if (head2Current == NULL){
+			return sortedHead;
+		}else {
+			// can only be one leftover because divided by 2
+			LL_appendNode(&sortedHead, &sortedTail, &head2Current);
+			return sortedHead;
+		}
+	}else {
+		LL_appendNode(&sortedHead, &sortedTail, &head1Current);
+		return sortedHead;
+	}
 }
