@@ -190,20 +190,27 @@ int LL_delete (struct node_t **Head, struct node_t **Tail, int target){
 	return -2;
 }
 
+// find the node with the smallest data in it, and return its previous node
 struct node_t *LL_findMin(struct node_t *Head){
-
-	struct node_t *current = Head;
-	struct node_t *min_node = Head;
-	int min = Head->data;
-
-	while ( current != NULL ){
-		if ( min > current->data ){
-			min = current->data;
-			min_node = current;
-		}
-		current = current->next;
+	if ( Head == NULL ){
+		return NULL;
 	}
-	return min_node;
+	if ( Head-> next == NULL ){
+		return Head;
+	}
+	struct node_t *previous = Head;
+	struct node_t *current = Head->next;
+	int min = Head->data;
+	struct node_t *min_pre_node = Head;
+	while ( current != NULL ){
+		if ( min > current->data){
+			min = current->data;
+			min_pre_node = previous;
+		}
+		previous = previous -> next;
+		current = current -> next;
+	}
+	return min_pre_node;
 }
 
 	/*
@@ -218,58 +225,12 @@ tail = newtail
 
 
 */
-	void LL_selection_sort(struct node_t **Head, struct node_t **Tail)
-{
+void LL_selection_sort(struct node_t **Head, struct node_t **Tail){
 	struct node_t *sortedHead = NULL;
 	struct node_t *sortedTail = NULL;
 
+	// struct node_t *
 
-	// while loop only does 2 things:
-	// 1. find the smallest
-	// 2. put it into the new sorted list.
-	while ( *Head != NULL ) {
-		// only one element
-		if ((*Head)->next == NULL ){
-			LL_append(&sortedHead, &sortedTail, (*Head)->data);
-			*Head = sortedHead;
-			*Tail = sortedTail;
-			return;
-		}
-
-		// actual results of tracing: minimum and minimum's previous node
-		struct node_t *cur_target = NULL;
-		struct node_t *tar_previous = NULL;
-
-		// assume the first element is the smallest
-		cur_target = *Head;
-		tar_previous = *Head;
-
-		// iteration
-		// always keep tracking previous in order to link the list after
-		struct node_t *previous = *Head;
-		struct node_t *current = (*Head)->next;
-		while ( current != NULL ){
-			if (current->data <= cur_target->data){
-				// record the minimum and its precious node
-				cur_target = current;
-				tar_previous = previous;
-			}
-			// otherwise: loop through
-			previous = current;
-			current = current->next;
-		}
-		// now we have the current min, and its previous node
-		// head -> .... -> tar_previous -> min -> node -> .....
-		// relink the list, push the min to the new sorted list 
-		tar_previous->next = cur_target->next;
-		// sortedHead -> .... -> min -> null
-		LL_append(&sortedHead, &sortedTail, cur_target->data );
-
-	}
-	// remap the list
-	*Head = sortedHead;
-	*Tail = sortedTail;
-	return;
 }
 
 int LL_appendNode ( struct node_t **Head, struct node_t **Tail, struct node_t **node ){
