@@ -1,3 +1,28 @@
-This is the title
+git status
+查看当前的有变化的files
 
-This is the change from the cloud
+git log
+查看所有commited 变化的历史
+
+git add
+“抹黑”： 选中需要commit的变化的files
+
+git commit -m "描述"
+commit 变化的files
+
+note： 以上都是发生在本地的，云上并没有变化
+
+git push
+把本地的变化上传到云端
+
+git pull
+把云端的变化下载到本地
+
+
+repo1 -> repoB
+
+A: repo1 -> repoA
+
+B:repo1 -> repoB
+
+
