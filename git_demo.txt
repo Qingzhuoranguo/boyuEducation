@@ -26,3 +26,5 @@ A: repo1 -> repoA
 B:repo1 -> repoB
 
 
+git clone URL
+把URL代表的repo下载下来
